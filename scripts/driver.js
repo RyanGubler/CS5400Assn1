@@ -18,6 +18,8 @@ MySample.main = (function(graphics) {
     //------------------------------------------------------------------
     function render() {
         graphics.clear();
+        graphics.drawLine(100, 100, 101, 120, 'rgb(255, 0, 0)');
+        graphics.drawLine(50, 50, 51, 70, 'rgb(0, 255, 0)');
     }
 
     //------------------------------------------------------------------
@@ -35,5 +37,6 @@ MySample.main = (function(graphics) {
 
     console.log('initializing...');
     requestAnimationFrame(animationLoop); 
+    console.log('initialized!')
 
 }(MySample.graphics));
