@@ -195,4 +195,4 @@ MySample.graphics = (function(pixelsX, pixelsY, showPixels) {
     };
 
     return api;
-}(150, 150, true));
+}(1000, 1000, false));
