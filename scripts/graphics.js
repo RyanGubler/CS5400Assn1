@@ -68,66 +68,84 @@ MySample.graphics = (function(pixelsX, pixelsY, showPixels) {
         let y_k = y1;
         let c = 2 * distanceY + distanceX * (2*b - 1);
         let p_k = (2 * distanceY * x_k) - (2 * distanceX * y_k) + c;
-        if(x1 < x2 && y2 < y1 && distanceX <= distanceY){ //if x and y are in octant 0
+        if(x1 < x2 && y2 < y1 && distanceX < distanceY){ //if x and y are in octant 0
+            [distanceX, distanceY] = [distanceY, distanceX]
+            slope = distanceY/distanceX;
+            b = y1 - slope * x1;
+            c = 2 * distanceY + distanceX * (2*b - 1);
+            p_k = (2 * distanceY * x_k) - (2 * distanceX * y_k) + c;
             while(y_k >= y2){
                 drawPixel(x_k, y_k, color);
                 if(p_k >= 0){
-                    p_k = p_k + (2 * distanceX) - (2 * distanceY);
+                    p_k = p_k + (2 * distanceY) - (2 * distanceX);
                     x_k++;
                 }else{
-                    p_k = p_k + (2 * distanceX);
+                    p_k = p_k + (2 * distanceY);
                 }
                 y_k--;
             }
         }
-        else if(x1 < x2 && y2 > y1 && distanceX <= distanceY){ //if x and y are in octant 3
+        else if(x1 < x2 && y2 > y1 && distanceX < distanceY){ //if x and y are in octant 3
+            [distanceX, distanceY] = [distanceY, distanceX]
+            slope = distanceY/distanceX;
+            b = y1 - slope * x1;
+            c = 2 * distanceY + distanceX * (2*b - 1);
+            p_k = (2 * distanceY * x_k) - (2 * distanceX * y_k) + c;
             while(y_k <= y2){
                 drawPixel(x_k, y_k, color);
                 if(p_k >= 0){
-                    p_k = p_k + (2 * distanceX) - (2 * distanceY);
+                    p_k = p_k + (2 * distanceY) - (2 * distanceX);
                     x_k++;
                 }else{
-                    p_k = p_k + (2 * distanceX);
+                    p_k = p_k + (2 * distanceY);
                 }
                 y_k++;
             }
         }
-        else if(x1 > x2 && y2 > y1 && distanceX <= distanceY){ //if x and y are in octant 4
+        else if(x1 > x2 && y2 > y1 && distanceX < distanceY){ //if x and y are in octant 4
+            [distanceX, distanceY] = [distanceY, distanceX]
+            slope = distanceY/distanceX;
+            b = y1 - slope * x1;
+            c = 2 * distanceY + distanceX * (2*b - 1);
+            p_k = (2 * distanceY * x_k) - (2 * distanceX * y_k) + c;
             while(y_k <= y2){
                 drawPixel(x_k, y_k, color);
                 if(p_k >= 0){
-                    p_k = p_k + (2 * distanceX) - (2 * distanceY);
+                    p_k = p_k + (2 * distanceY) - (2 * distanceX);
                     x_k--;
                 }else{
-                    p_k = p_k + (2 * distanceX);
+                    p_k = p_k + (2 * distanceY);
                 }
                 y_k++;
             }
         }
-        else if(x1 > x2 && y2 < y1 && distanceX <= distanceY){ //if x and y are in octant 7
+        else if(x1 > x2 && y2 < y1 && distanceX < distanceY){ //if x and y are in octant 7
+            [distanceX, distanceY] = [distanceY, distanceX]
+            slope = distanceY/distanceX;
+            b = y1 - slope * x1;
+            c = 2 * distanceY + distanceX * (2*b - 1);
+            p_k = (2 * distanceY * x_k) - (2 * distanceX * y_k) + c;
             while(y_k >= y2){
                 drawPixel(x_k, y_k, color);
                 if(p_k >= 0){
-                    p_k = p_k + (2 * distanceX) - (2 * distanceY);
+                    p_k = p_k + (2 * distanceY) - (2 * distanceX);
                     x_k--;
                 }else{
-                    p_k = p_k + (2 * distanceX);
+                    p_k = p_k + (2 * distanceY);
                 }
                 y_k--;
             }
         }
-        
         else if(x1 < x2 && y2 < y1){ //if x and y are in octanct 1
             while(x_k < x2){
                 drawPixel(x_k, y_k, color);
                 if(p_k >= 0){
                     p_k = p_k + (2 * distanceY) - (2 * distanceX);
-                    x_k++;
                     y_k--;
                 }else{
                     p_k = p_k + (2 * distanceY);
-                    x_k++;
                 }
+                x_k++;
             }
         }
         else if(y1 < y2 && x1 < x2){ //if x and y are in octant 2
@@ -135,12 +153,11 @@ MySample.graphics = (function(pixelsX, pixelsY, showPixels) {
                 drawPixel(x_k, y_k, color);
                 if(p_k >= 0){
                     p_k = p_k + (2 * distanceY) - (2 * distanceX);
-                    x_k++;
                     y_k++;
                 }else{
                     p_k = p_k + (2 * distanceY);
-                    x_k++;
                 }
+                x_k++;
             }
         }
         else if(x1 > x2 && y1 < y2){ //if x and y are in octant 5
@@ -148,12 +165,11 @@ MySample.graphics = (function(pixelsX, pixelsY, showPixels) {
                 drawPixel(x_k, y_k, color);
                 if(p_k >= 0){
                     p_k = p_k + (2 * distanceY) - (2 * distanceX);
-                    x_k--;
                     y_k++;
                 }else{
                     p_k = p_k + (2 * distanceY);
-                    x_k--;
                 }
+                x_k--;
             }
         }
         else if(x1 > x2 && y1 > y2){ //if x and y are in octant 6
@@ -161,12 +177,11 @@ MySample.graphics = (function(pixelsX, pixelsY, showPixels) {
                 drawPixel(x_k, y_k, color);
                 if(p_k >= 0){
                     p_k = p_k + (2 * distanceY) - (2 * distanceX);
-                    x_k--;
                     y_k--;
                 }else{
                     p_k = p_k + (2 * distanceY);
-                    x_k--;
                 }
+                x_k--;
             }
         }
     }
