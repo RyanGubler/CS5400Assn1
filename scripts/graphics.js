@@ -85,7 +85,7 @@ MySample.graphics = (function(pixelsX, pixelsY, showPixels) {
                 y_k--;
             }
         }
-        else if(x1 < x2 && y2 > y1 && distanceX < distanceY){ //if x and y are in octant 3
+        else if(x1 <= x2 && y2 >= y1 && distanceX <= distanceY){ //if x and y are in octant 3
             [distanceX, distanceY] = [distanceY, distanceX]
             slope = distanceY/distanceX;
             b = y1 - slope * x1;
@@ -102,7 +102,7 @@ MySample.graphics = (function(pixelsX, pixelsY, showPixels) {
                 y_k++;
             }
         }
-        else if(x1 > x2 && y2 > y1 && distanceX < distanceY){ //if x and y are in octant 4
+        else if(x1 >= x2 && y2 >= y1 && distanceX <= distanceY){ //if x and y are in octant 4
             [distanceX, distanceY] = [distanceY, distanceX]
             slope = distanceY/distanceX;
             b = y1 - slope * x1;
@@ -119,7 +119,7 @@ MySample.graphics = (function(pixelsX, pixelsY, showPixels) {
                 y_k++;
             }
         }
-        else if(x1 > x2 && y2 < y1 && distanceX < distanceY){ //if x and y are in octant 7
+        else if(x1 >= x2 && y2 <= y1 && distanceX <= distanceY){ //if x and y are in octant 7
             [distanceX, distanceY] = [distanceY, distanceX]
             slope = distanceY/distanceX;
             b = y1 - slope * x1;
@@ -136,7 +136,7 @@ MySample.graphics = (function(pixelsX, pixelsY, showPixels) {
                 y_k--;
             }
         }
-        else if(x1 < x2 && y2 < y1){ //if x and y are in octanct 1
+        else if(x1 <= x2 && y1 >= y2){ //if x and y are in octanct 1
             while(x_k < x2){
                 drawPixel(x_k, y_k, color);
                 if(p_k >= 0){
@@ -148,7 +148,7 @@ MySample.graphics = (function(pixelsX, pixelsY, showPixels) {
                 x_k++;
             }
         }
-        else if(y1 < y2 && x1 < x2){ //if x and y are in octant 2
+        else if(x1 <= x2 && y1 <= y2  ){ //if x and y are in octant 2
             while(x_k < x2){
                 drawPixel(x_k, y_k, color);
                 if(p_k >= 0){
@@ -160,7 +160,7 @@ MySample.graphics = (function(pixelsX, pixelsY, showPixels) {
                 x_k++;
             }
         }
-        else if(x1 > x2 && y1 < y2){ //if x and y are in octant 5
+        else if(x1 >= x2 && y1 <= y2){ //if x and y are in octant 5
             while(x_k > x2){
                 drawPixel(x_k, y_k, color);
                 if(p_k >= 0){

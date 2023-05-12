@@ -35,7 +35,7 @@ MySample.main = (function(graphics) {
     function render() {
         graphics.clear();
         graphics.drawLine(ptCenter.x, ptCenter.y, Math.trunc(ptEnd.x), Math.trunc(ptEnd.y), 'rgb(80, 130, 100)');
-        // graphics.drawLine(ptCenter.x, ptCenter.y, Math.trunc(ptOpposite.x), Math.trunc(ptOpposite.y), 'rgb(80, 130, 100)');
+        graphics.drawLine(ptCenter.x, ptCenter.y, Math.trunc(ptOpposite.x), Math.trunc(ptOpposite.y), 'rgb(180, 130, 0)');
         
     }
 
