@@ -60,6 +60,115 @@ MySample.graphics = (function(pixelsX, pixelsY, showPixels) {
     //
     //------------------------------------------------------------------
     function drawLine(x1, y1, x2, y2, color) {
+        let distanceX = Math.abs(x2-x1);
+        let distanceY = Math.abs(y2-y1);
+        let slope = distanceY/distanceX;
+        let b = y1 - slope * x1;
+        let x_k = x1;
+        let y_k = y1;
+        let c = 2 * distanceY + distanceX * (2*b - 1);
+        let p_k = (2 * distanceY * x_k) - (2 * distanceX * y_k) + c;
+        if(x1 < x2 && y2 < y1 && distanceX <= distanceY){ //if x and y are in octant 0
+            while(y_k >= y2){
+                drawPixel(x_k, y_k, color);
+                if(p_k >= 0){
+                    p_k = p_k + (2 * distanceX) - (2 * distanceY);
+                    x_k++;
+                }else{
+                    p_k = p_k + (2 * distanceX);
+                }
+                y_k--;
+            }
+        }
+        else if(x1 < x2 && y2 > y1 && distanceX <= distanceY){ //if x and y are in octant 3
+            while(y_k <= y2){
+                drawPixel(x_k, y_k, color);
+                if(p_k >= 0){
+                    p_k = p_k + (2 * distanceX) - (2 * distanceY);
+                    x_k++;
+                }else{
+                    p_k = p_k + (2 * distanceX);
+                }
+                y_k++;
+            }
+        }
+        else if(x1 > x2 && y2 > y1 && distanceX <= distanceY){ //if x and y are in octant 4
+            while(y_k <= y2){
+                drawPixel(x_k, y_k, color);
+                if(p_k >= 0){
+                    p_k = p_k + (2 * distanceX) - (2 * distanceY);
+                    x_k--;
+                }else{
+                    p_k = p_k + (2 * distanceX);
+                }
+                y_k++;
+            }
+        }
+        else if(x1 > x2 && y2 < y1 && distanceX <= distanceY){ //if x and y are in octant 7
+            while(y_k >= y2){
+                drawPixel(x_k, y_k, color);
+                if(p_k >= 0){
+                    p_k = p_k + (2 * distanceX) - (2 * distanceY);
+                    x_k--;
+                }else{
+                    p_k = p_k + (2 * distanceX);
+                }
+                y_k--;
+            }
+        }
+        
+        else if(x1 < x2 && y2 < y1){ //if x and y are in octanct 1
+            while(x_k < x2){
+                drawPixel(x_k, y_k, color);
+                if(p_k >= 0){
+                    p_k = p_k + (2 * distanceY) - (2 * distanceX);
+                    x_k++;
+                    y_k--;
+                }else{
+                    p_k = p_k + (2 * distanceY);
+                    x_k++;
+                }
+            }
+        }
+        else if(y1 < y2 && x1 < x2){ //if x and y are in octant 2
+            while(x_k < x2){
+                drawPixel(x_k, y_k, color);
+                if(p_k >= 0){
+                    p_k = p_k + (2 * distanceY) - (2 * distanceX);
+                    x_k++;
+                    y_k++;
+                }else{
+                    p_k = p_k + (2 * distanceY);
+                    x_k++;
+                }
+            }
+        }
+        else if(x1 > x2 && y1 < y2){ //if x and y are in octant 5
+            while(x_k > x2){
+                drawPixel(x_k, y_k, color);
+                if(p_k >= 0){
+                    p_k = p_k + (2 * distanceY) - (2 * distanceX);
+                    x_k--;
+                    y_k++;
+                }else{
+                    p_k = p_k + (2 * distanceY);
+                    x_k--;
+                }
+            }
+        }
+        else if(x1 > x2 && y1 > y2){ //if x and y are in octant 6
+            while(x_k > x2){
+                drawPixel(x_k, y_k, color);
+                if(p_k >= 0){
+                    p_k = p_k + (2 * distanceY) - (2 * distanceX);
+                    x_k--;
+                    y_k--;
+                }else{
+                    p_k = p_k + (2 * distanceY);
+                    x_k--;
+                }
+            }
+        }
     }
 
     let api = {
